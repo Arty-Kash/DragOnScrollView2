@@ -5,4 +5,4 @@ This is a Xamarin.Forms sample program to learn how to pan, pinch and tap object
 * English: 
 * Japanese: 
 
-[Keywords] Xamarin.Forms, 
+[Keywords] Xamarin.Forms, Gesture, Tap, Pan, Pinch, Drag, ScrollView, Invoking Events from Effects
