@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DragOnScrollView"
+             x:Class="DragOnScrollView.MainPage">
+    
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <StackLayout Grid.Row="0" BackgroundColor="Gray" 
+                     Padding="0,0,0,1" HeightRequest="50">
+            <StackLayout BackgroundColor="White" HeightRequest="50">
+                <Label Text="Tap and Drag on ScrollView Demo" 
+                       Grid.Row="0" VerticalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+
+        <!-- Buttons to control this App -->
+        <StackLayout Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="StickMemoButton"
+                    Text="+" Clicked="StickMemo"
+                    WidthRequest="50" HeightRequest="25"
+                    BorderWidth="1" Margin="3,3,0,3"/>
+            <Button x:Name="LinkMemoButton"
+                    Text="->" Clicked="LinkMemo"
+                    IsEnabled="False" 
+                    WidthRequest="50" HeightRequest="25"
+                    BorderWidth="1" Margin="3,3,0,3"/>
+            <Button x:Name="DeleteObjectButton"
+                    Image="Trash.png" Clicked="DeleteObject"
+                    IsEnabled="False" 
+                    WidthRequest="50" HeightRequest="25"
+                    BorderWidth="1" Margin="3,3,0,3"/>
+            <Label x:Name="StatusLabel"
+                   HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <!-- ScrollView and AbsoluteLayout for Main Board -->
+        <StackLayout Grid.Row="2" BackgroundColor="Gray" Padding="0,1,0,1" 
+                     VerticalOptions="FillAndExpand">            
+            <ScrollView x:Name="ScrollBoard" Orientation="Both"
+                        SizeChanged="GetScrollBoardSize" Scrolled="IsScrolled"
+                        BackgroundColor="LightGray" VerticalOptions="FillAndExpand">
+                <AbsoluteLayout x:Name="MemoBoard" BackgroundColor="White">
+                    <AbsoluteLayout.GestureRecognizers>
+                        <!--
+                        <PanGestureRecognizer PanUpdated="OnPanMemoBoard"/>
+                        -->
+                        <PinchGestureRecognizer PinchUpdated="OnPinchMemoBoard"/>
+                        <TapGestureRecognizer Tapped="OnTapMemoBoard"/>
+                    </AbsoluteLayout.GestureRecognizers>
+                </AbsoluteLayout>
+            </ScrollView>
+        </StackLayout>
+
+        <!-- Slider to Pinch MemoBoard -->
+        <StackLayout Grid.Row="3" BackgroundColor="Gray" Padding="0, 0, 0, 1">
+            <StackLayout BackgroundColor="White">
+                <Slider x:Name="ScaleSlider" ValueChanged="ScaleChanged"
+                        Maximum="2" Minimum="0.1" Value="1"/>
+            </StackLayout>
+        </StackLayout>
+
+        <!-- Monitor some variables for Debug -->
+        <StackLayout x:Name="Debug" Grid.Row="4" Orientation="Horizontal">
+            <StackLayout>
+                <Label x:Name="Label1" Text=" "/>
+                <Label x:Name="Label2" Text=" "/>
+                <Label x:Name="Label3" Text=" "/>
+            </StackLayout>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>
+
+
+
